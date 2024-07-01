@@ -9,10 +9,8 @@ use Symfony\Component\Routing\Attribute\Route;
 class TrainersController extends AbstractController
 {
     #[Route('/trainers', name: 'app_trainers')]
-    public function index(): Response
+    public function show(): Response
     {
-        return $this->render('trainers/index.html.twig', [
-            'controller_name' => 'TrainersController',
-        ]);
+        
     }
 }
