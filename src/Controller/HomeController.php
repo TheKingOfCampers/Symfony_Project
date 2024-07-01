@@ -11,8 +11,11 @@ class HomeController extends AbstractController
     #[Route('/home', name: 'app_home')]
     public function index(): Response
     {
+        $trainers = $this->data()['trainers'];
+        dump($trainers); // dd comprend die en plus
+
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
+            'trainers' => 'trainers',
         ]);
     }
 }
