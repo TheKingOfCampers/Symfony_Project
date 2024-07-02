@@ -17,4 +17,8 @@ class TrainersController extends AbstractController
     {
         return $this->render('trainers/index.html.twig'); 
     }
+    public function display(): Response
+    {
+        
+    }
 }

@@ -9,14 +9,14 @@ use Symfony\Component\Routing\Attribute\Route;
 class HomeController extends AbstractController
 {
     
-    #[Route('/home', name: 'app_home')]
+    #[Route('/', name: 'app_home')]
     public function index(): Response
     {
         $trainers = $this->data()['trainers'];
-        dump($trainers); // dd comprend die en plus
+        dump($trainers); // dd comprend die en plus (truc en noir au début)
 
         // la méthode retourne un tableau, on peut utiliser les clés du tableau directement à partir de la méthode
-        $trainers = $this->data()['trainers'];
+        // $trainers = $this->data()['trainers'];
         $articles = [];
 
         foreach( $trainers as $trainer) {
@@ -28,18 +28,18 @@ class HomeController extends AbstractController
             'articles' => $articles
         ]);
     }
+    
     #[Route('/bonjour/{id}', name: 'trainer_bonjour')]
     public function bonjour($id): Response
     {
         $message = '';
         if($id == 1) $message = 'Bonjour';
         if($id == 2) $message = 'Hello';
-        
+
         return $this->render('home/bonjour.html.twig', [
             'message' => $message,
         ]);
     }
-
 
     private function data():array{
         return [
