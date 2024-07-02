@@ -14,6 +14,7 @@ class HomeController extends AbstractController
     {
         $trainers = $this->data()['trainers'];
         dump($trainers); // dd comprend die en plus
+
         // la méthode retourne un tableau, on peut utiliser les clés du tableau directement à partir de la méthode
         $trainers = $this->data()['trainers'];
         $articles = [];
@@ -27,6 +28,18 @@ class HomeController extends AbstractController
             'articles' => $articles
         ]);
     }
+    #[Route('/bonjour/{id}', name: 'trainer_bonjour')]
+    public function bonjour($id): Response
+    {
+        $message = '';
+        if($id == 1) $message = 'Bonjour';
+        if($id == 2) $message = 'Hello';
+        
+        return $this->render('home/bonjour.html.twig', [
+            'message' => $message,
+        ]);
+    }
+
 
     private function data():array{
         return [
