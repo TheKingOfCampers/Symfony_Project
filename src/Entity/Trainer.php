@@ -26,6 +26,9 @@ class Trainer
     #[ORM\Column(type: Types::SMALLINT, nullable: true)]
     private ?int $stars = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $profession = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +78,18 @@ class Trainer
     public function setStars(?int $stars): static
     {
         $this->stars = $stars;
+
+        return $this;
+    }
+
+    public function getProfession(): ?string
+    {
+        return $this->profession;
+    }
+
+    public function setProfession(string $profession): static
+    {
+        $this->profession = $profession;
 
         return $this;
     }
