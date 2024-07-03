@@ -75,9 +75,8 @@ php bin/console make:migration
 ```
 exectuer les commande SQl des fichiers migration
 ```
-php bin/console doctrine:migrations:migrate```
-
-
+php bin/console doctrine:migrations:migrate
+```
 
 démarrer le serveur sans https
 ```
