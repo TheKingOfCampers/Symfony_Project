@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\TrainerRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -22,22 +20,11 @@ class Trainer
     #[ORM\Column(length: 100)]
     private ?string $lastName = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $profession = null;
-
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $bio = null;
 
-    /**
-     * @var Collection<int, Article>
-     */
-    #[ORM\OneToMany(targetEntity: Article::class, mappedBy: 'trainer')]
-    private Collection $articles;
-
-    public function __construct()
-    {
-        $this->articles = new ArrayCollection();
-    }
+    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
+    private ?int $stars = null;
 
     public function getId(): ?int
     {
@@ -68,18 +55,6 @@ class Trainer
         return $this;
     }
 
-    public function getProfession(): ?string
-    {
-        return $this->profession;
-    }
-
-    public function setProfession(?string $profession): static
-    {
-        $this->profession = $profession;
-
-        return $this;
-    }
-
     public function getBio(): ?string
     {
         return $this->bio;
@@ -92,32 +67,14 @@ class Trainer
         return $this;
     }
 
-    /**
-     * @return Collection<int, Article>
-     */
-    public function getArticles(): Collection
+    public function getStars(): ?int
     {
-        return $this->articles;
+        return $this->stars;
     }
 
-    public function addArticle(Article $article): static
+    public function setStars(?int $stars): static
     {
-        if (!$this->articles->contains($article)) {
-            $this->articles->add($article);
-            $article->setTrainer($this);
-        }
-
-        return $this;
-    }
-
-    public function removeArticle(Article $article): static
-    {
-        if ($this->articles->removeElement($article)) {
-            // set the owning side to null (unless already changed)
-            if ($article->getTrainer() === $this) {
-                $article->setTrainer(null);
-            }
-        }
+        $this->stars = $stars;
 
         return $this;
     }

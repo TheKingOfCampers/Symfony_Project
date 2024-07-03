@@ -12,7 +12,9 @@
         {% endblock %}
     </head>
     <body>
-        {% include('./partials/menu.html.twig') %}
+        <header>
+            {% include('./partials/menu.html.twig') %}
+        </header>
         {% block body %}{% endblock %}
     </body>
 </html>
