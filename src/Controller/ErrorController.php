@@ -12,7 +12,7 @@ class ErrorController extends AbstractController
     public function error404(): Response
     {
         return $this->render('error/index.html.twig', [
-            
+            'message' => 'Page Not Found 404',
         ]);
     }
 }
