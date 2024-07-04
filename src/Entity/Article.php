@@ -14,14 +14,17 @@ class Article
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 100)]
     private ?string $title = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $date = null;
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $created_at = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $content = null;
+
+    #[ORM\ManyToOne(inversedBy: 'articles')]
+    private ?Trainer $trainer = null;
 
     public function getId(): ?int
     {
@@ -40,14 +43,14 @@ class Article
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->date;
+        return $this->created_at;
     }
 
-    public function setDate(\DateTimeInterface $date): static
+    public function setCreatedAt(?\DateTimeInterface $created_at): static
     {
-        $this->date = $date;
+        $this->created_at = $created_at;
 
         return $this;
     }
@@ -57,9 +60,21 @@ class Article
         return $this->content;
     }
 
-    public function setContent(string $content): static
+    public function setContent(?string $content): static
     {
         $this->content = $content;
+
+        return $this;
+    }
+
+    public function getTrainer(): ?Trainer
+    {
+        return $this->trainer;
+    }
+
+    public function setTrainer(?Trainer $trainer): static
+    {
+        $this->trainer = $trainer;
 
         return $this;
     }
