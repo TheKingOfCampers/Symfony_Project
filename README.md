@@ -6,9 +6,13 @@
 </p>
 
 
-Crée un nouveau projet avec symfony
+Crée un nouveau projet standart avec symfony
 ```
 symfony new "nom_du_projet"
+```
+Crée un nouveau projet complet avec symfony
+```
+symfony new "nom_du_projet" --webapp
 ```
 lister les commandes symfony
 ```
